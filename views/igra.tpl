@@ -1,7 +1,8 @@
+% from model import ZMAGA, PORAZ
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
 <body>
 
@@ -18,14 +19,29 @@
   <h3>Stopnja obešenosti:</h3>
   <h4>{{ igra.stevilo_napak() }}</h4>
 
-  <img src="img/{{ igra.stevilo_napak() }}.jpg" alt="Stopnja obešenosti">
-
+  <img src="/img/{{ igra.stevilo_napak() }}.jpg" alt="Stopnja obešenosti">
+% if stanje == ZMAGA:
+<h3>Bravo, zmagal si!</h3>
+<form action="/igra/" method="post">
+  <button type="submit">Nova igra</button>
+</form>
+% elif stanje == PORAZ:
+<h3>Ojoj, izgubil si :(</h3>
+<h3>Pravilno geslo je bilo {{ igra.geslo }} </h3>
+<form action="/igra/" method="post">
+  <button type="submit">Nova igra</button>
+</form>
+% else:
   <form method="POST">
     <label> Vnesi črko:
       <input type="text" name="crka">
     </label>
     <input type="submit">
   </form>
+  <form action="/igra/" method="post">
+    <button type="submit">Nova igra</button>
+  </form>
+% end
 </body>
 
 </html>

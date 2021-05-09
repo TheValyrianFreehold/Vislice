@@ -1,7 +1,5 @@
 import random
 
-ZACETEK = "z"
-
 STEVILO_DOVOLJENIH_NAPAK = 10
 PRAVILNA_CRKA = "+"
 PONOVLJENA_CRKA = "o"
@@ -18,14 +16,13 @@ class Vislice:
         return self.max_id
     def nova_igra(self,):
         nov_id = self.prost_id_igre()
-        sveza_igra = nova_igra(bazen_besed)
+        sveza_igra = nova_igra()
         self.igre[nov_id] = (sveza_igra, ZACETEK)
         return nov_id
     def ugibaj(self, id_igre, crka):
         igra, _ = self.igre[id_igre]
         novo_stanje = igra.ugibaj(crka)
         self.igre[id_igre] = (igra, novo_stanje)
-        return novo_stanje
 
 
 class Igra(object):
@@ -72,6 +69,6 @@ class Igra(object):
 with open("besede.txt", encoding="utf-8") as f:
     bazen_besed = f.read().split()
 
-def nova_igra(bazen_besed):
+def nova_igra():
     geslo = random.choice(bazen_besed)
     return Igra(geslo)
